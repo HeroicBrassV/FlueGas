@@ -1,0 +1,8 @@
+{
+  "BSCommonConfig": {
+    "ClientCollectorPath": "../../../../Eigcac.Main/bin/Debug/netcoreapp3.1/Eigcac.Main.exe",
+    "ClientCollectorBase": "../../../../Eigcac.Main/bin/Debug/netcoreapp3.1/",
+    "GuardClientCollector": true,
+    "DetDataSearchLimit": 100000
+  }
+}

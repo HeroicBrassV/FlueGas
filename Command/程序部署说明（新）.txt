@@ -1,0 +1,81 @@
+﻿1、Root权限下打开 /etc/ld.so.conf ，添加一行：/home/forlinx/FlueGas（即数采目录，此处是烟气的路径，其他子产品相应修改），并执行 /sbin/ldconfig 命令。
+2、检查 _PWD_TEMP_ 文件里面 echo 后面的 root 密码是否与实际一致；修改 EigcacMain.sh 文件 cd 后面的数采目录，改成实际路径
+  添加 EigcacMain.sh 和 _PWD_TEMP_ 的可执行权限，进入数采目录，打开终端，输入：
+  sudo -s
+  sudo chmod +x ./EigcacMain.sh
+  sudo chmod +x ./_PWD_TEMP_
+
+3、现场运行 gnome-session-properties ，添加一个自启动项，启动项名称：EigcacMain，目标路径为数采目录下面的 EigcacMain.sh ，完成后，重启设备，看是否开机启动正常
+
+4、设置火狐开机启动
+  执行完1-3步骤后，浏览器将由Eigcac.BSServer启动时自动启动，仅需要检查BSServer/Configs/LaunchWeb.sh 中 su 后面登录Linux的普通用户的用户名是否正确
+
+  下载(全屏)组件：AutoFullScreen 添加到火狐浏览器，https://addons.mozilla.org/zh-CN/firefox/addon/autofullscreen/
+  进行配置，关闭全屏组件的自动更新，并允许在隐私模式下运行 
+
+  【火狐浏览器需要升级到92版本】下载(滚动条组件)：Scrollanywhere 添加到火狐浏览器，https://addons.mozilla.org/zh-CN/firefox/addon/srcoll_anywhere/
+
+  浏览器主页设置为：http://127.0.0.1:5000/
+
+  避免上次异常关闭界面：菜单、选项、隐私与安全、在 历史记录（History） 下，选择“使用自定义设置”，选择“始终使用隐私浏览模式”
+
+  如果不需要，可以删除H.264等浏览器组件
+
+  设置合适的浏览器缩放比例
+
+  允许点击界面关闭浏览器：Firefox地址栏中输入about:config，然后找到dom.allow_scripts_to_close_windows参数，设置为true，再重启Firefox
+  监测浏览器关闭事件（页面崩溃恢复）：找到dom.require_user_interaction_for_beforeunload参数，设置为false
+
+5、组态界面，Ubuntu安装GDI
+  apt-get install libgdiplus
+  cd /usr/lib
+  ln -s libgdiplus.so gdiplus.dll
+
+6、取消系统和软件自动更新、检查和提醒
+  关闭声音、打印、升级托盘等开机启动
+  添加BS网页桌面快捷方式，更改图标及添加执行权限
+
+7、Arm64架构ubuntu下安装.net core sdk：拷贝 NetCore_Arm64.sh 和 dotnet-sdk-3.1.406-linux-arm64.tar.gz 到目标机器。
+输入 sudo su 进入 root 后：
+source ./NetCore_Arm64.sh
+
+8、推送视频流，Ubuntu安装ffmpeg
+  apt-get install ffmpeg
+
+9、按照《监控视频Linux环境nginx部署》文档部署Nginx服务器
+
+//10、无需：安装传感器监控：sudo apt install lm-sensors ，输入 sudo sensors-detect， 一路下去输入"Yes"或者"ENTER"，直到结束。
+
+11、安装微软雅黑字体：使用cp命令拷贝 App_Conifg\Fonts 文件夹内的两个字体文件到/usr/share/fonts/文件夹后，使用如下命令：
+    cd /usr/share/fonts/
+    mkfontscale
+    mkfontdir
+    fc-cache
+
+12、安装OpenCV，使用如下命令：
+    sudo apt update
+    sudo apt install python3-pip
+    sudo apt install libopencv-dev
+    sudo pip3 install --upgrade setuptools
+    sudo python3 -m pip install --upgrade pip
+    sudo pip3 install opencv-python
+    sudo pip3 install opencv-contrib-python
+    sudo pip3 install numpy==1.19.4
+    sudo pip3 install Pillow
+
+13、安装MySql并进行配置：
+    https://www.cnblogs.com/opsprobe/p/9126864.html（备注：如果数据库访问失败，[mysqld]下添加一行 skip-grant-tables）
+    5.x
+      GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Suncereltd@123' WITH GRANT OPTION;
+    8.x
+      CREATE USER 'root'@'%';
+      GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';
+      ALTER USER 'root'@'%' IDENTIFIED WITH MySQL_native_password BY 'Suncereltd@123';
+      ALTER USER 'root'@'localhost' IDENTIFIED WITH MySQL_native_password BY 'Suncereltd@123';
+      如SSL报错，则[mysqld]下添加一行
+      skip_ssl
+
+    https://www.cnblogs.com/shihaiming/p/5855616.html（备注：my.cnf位置在/etc/mysql/my.cnf，注意路径开头的 "/"）
+
+14、其他
+    如果有区块链：拷贝相关文件、主文件添加执行权限；启动后确认防火墙端口开启(netstat -tunlp，一般18718和18720端口)

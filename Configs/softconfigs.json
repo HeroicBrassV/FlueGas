@@ -1,0 +1,20 @@
+﻿{
+  "BSClientConfig": {
+    "LocolBSAddress": "localhost",
+    "LocolBSPort": 5001
+  },
+  "AppCommonConfig": {
+    "BatchInDbCount": 90,
+    "BatchInDbOutSeconds": 0,
+    "VirtualPortNamesPath": "../DriverKit/virtualPortNames.Linux.json",
+    "BSServerPath": "../../../../Eigcac.BSServer/bin/Debug/netcoreapp3.1/Eigcac.BSServer.exe",
+    "BSServerBase": "../../../../Eigcac.BSServer",
+    "GuardServer": true,
+    "EnvCalHourCatalogs": "SO2压力，NOX压力，CO压力，N2压力，总管温度，总管湿度，总管静压，动环温度，动环湿度",
+    //"IntellLinkAppPathSetted": "IntellLink/IntellLink.Main.exe",
+    "IntellLinkAppPathSetted": "IntellLinkCore/IntellLinkCore.Main",
+    "BlueToothAPIUrl": "http://202.104.69.204:7002/api/"
+    //"SysAutoSyncTime": true,
+    //"SysLogDevCommInDB": "false"
+  }
+}

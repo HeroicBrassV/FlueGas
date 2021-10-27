@@ -1,0 +1,18 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "WindPowerCore.Main.Worker": "Information"
+    }
+  },
+  "AppBaseInfo": {
+    "SystemTitle": "污染源水质自动监测采集与质控系统",
+    "CopyRight": "广东旭诚科技有限公司"
+    //"EntryAssenbly": "Eigcac.Main"
+  },
+  "ConnectionStrings": {
+    "ClientDatabase": "Server=localhost;Database=egicacwater;Uid=root;Pwd=Sun@123456;Character Set=utf8;"
+  }
+}

@@ -1,0 +1,11 @@
+﻿@charset "utf-8";
+#header {
+    background-color: #4875D4;
+    background: -webkit-linear-gradient(left, #4875D4, #578CFF);
+    background: linear-gradient(to right, #4875D4, #578CFF);
+}
+#nav {
+    background-color: #4875D4;
+    background: -webkit-linear-gradient(bottom, #4875D4, #578CFF);
+    background: linear-gradient(to bottom, #4875D4, #578CFF);
+}

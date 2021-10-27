@@ -1,0 +1,18 @@
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Warning",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information",
+      "WindPowerCore.Main.Worker": "Information"
+    }
+  },
+  "AppBaseInfo": {
+    "SystemTitle": "辐射环境智能监测系统",
+    "CopyRight": "广东旭诚科技有限公司"
+    //"EntryAssenbly": "Eigcac.Main"
+  },
+  "ConnectionStrings": {
+    "ClientDatabase": "Server=localhost;Database=radiation;Uid=root;Pwd=Sun@123456;Character Set=utf8;"
+  }
+}
